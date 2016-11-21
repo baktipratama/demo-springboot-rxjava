@@ -24,7 +24,7 @@ public class HelloController {
   @GetMapping("/{name}")
   public HelloResponse sayHello(@PathVariable String name){
     LOGGER.info("START sayHello Controller");
-    HelloResponse response =helloService.hello(name);
+    HelloResponse response =helloService.hello(name).toBlocking().value();
     LOGGER.info("FINISH sayHello Controller");
     return response;
   }
