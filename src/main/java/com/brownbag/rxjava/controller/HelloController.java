@@ -29,7 +29,10 @@ public class HelloController {
   public DeferredResult<HelloResponse> sayHello(@PathVariable String name){
     LOGGER.info("START sayHello Controller");
     DeferredResult<HelloResponse> result = new DeferredResult<>();
-    helloService.hello(name).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation()).subscribe(new DeferredSubscriber<>(result));
+    helloService.hello(name)
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.computation())
+        .subscribe(new DeferredSubscriber<>(result));
     LOGGER.info("FINISH sayHello Controller");
     return result;
   }
