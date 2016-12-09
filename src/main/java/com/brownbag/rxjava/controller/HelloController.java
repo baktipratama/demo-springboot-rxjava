@@ -30,8 +30,6 @@ public class HelloController {
     LOGGER.info("START sayHello Controller");
     DeferredResult<HelloResponse> result = new DeferredResult<>();
     helloService.hello(name)
-        .subscribeOn(Schedulers.io())
-        .observeOn(Schedulers.computation())
         .subscribe(new DeferredSubscriber<>(result));
     LOGGER.info("FINISH sayHello Controller");
     return result;
